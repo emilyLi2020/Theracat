@@ -299,7 +299,7 @@ void updateMotor() {
     switch (motorPhase) {
       case 0: phaseDuration = 2000; break;
       case 1: phaseDuration = 5000; break;
-      case 2: phaseDuration = 3000; break;
+      case 2: phaseDuration = 2000; break;
       case 3: phaseDuration = 5000; break;
     }
 
