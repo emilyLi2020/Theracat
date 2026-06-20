@@ -44,6 +44,9 @@ int       maIdx   = 0;
 long      maSum[3] = {0, 0, 0};
 bool      maFilled = false;
 
+// ===================== Serial command input =====================
+const unsigned long SERIAL_CMD_IDLE_MS = 150;
+
 // ===================== Batch + outbox buffers =====================
 int16_t batchBuf[BATCH_SAMPLES][3];
 int     batchIdx = 0;
@@ -260,17 +263,25 @@ void handleLabelCommand(String label) {
 
 void readSerialCommands() {
   static String serialCmd = "";
+  static unsigned long lastSerialCharMs = 0;
 
   while (Serial.available() > 0) {
     char ch = (char)Serial.read();
+    lastSerialCharMs = millis();
+
     if (ch == '\n' || ch == '\r') {
       if (serialCmd.length() > 0) {
         handleLabelCommand(serialCmd);
         serialCmd = "";
       }
-    } else {
+    } else if (isPrintable(ch)) {
       serialCmd += ch;
     }
+  }
+
+  if (serialCmd.length() > 0 && millis() - lastSerialCharMs >= SERIAL_CMD_IDLE_MS) {
+    handleLabelCommand(serialCmd);
+    serialCmd = "";
   }
 }
 
@@ -419,6 +430,7 @@ void setup() {
 
   Serial.printf("[sample] %d Hz, %d samples per batch (~%d s)\n",
                 SAMPLE_HZ, BATCH_SAMPLES, BATCH_SECONDS);
+  Serial.println("[serial] type 'agitated' or 'calm' and press Send");
   Serial.println("csv,ms,sample_index,x_raw,y_raw,z_raw,x_g,y_g,z_g,magnitude_g");
 
   motorPhaseStart = millis();
