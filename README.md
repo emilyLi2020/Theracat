@@ -1,8 +1,16 @@
-<img width="5712" height="4284" alt="IMG_6583" src="https://github.com/user-attachments/assets/3d8bfb6c-5452-4081-9cfd-a73aecb208ed" />
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/3d8bfb6c-5452-4081-9cfd-a73aecb208ed" width="450">
+</div>
 
 ## ML Model Demo & Jupyter Notebook
 
-<img width="1610" height="1042" alt="Screenshot 2026-06-21 at 10 40 31 AM" src="https://github.com/user-attachments/assets/f92592f0-9d48-48d2-9166-e8e89213052c" />
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/f92592f0-9d48-48d2-9166-e8e89213052c" width="700">
+</div>
+
+<p align="center"><em>
+Figure: Example accelerometer signals from TheraCat showing stable motion patterns during a calm state and larger fluctuations during an agitated state used for stress classification.
+</em></p>
 
 Figure: Example accelerometer signals from TheraCat showing stable motion patterns during a calm state and larger fluctuations during an agitated state used for stress classification.
 
